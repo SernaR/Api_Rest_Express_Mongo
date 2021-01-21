@@ -27,16 +27,14 @@ class UserController {
         User.findOne({ email })
             .then( userFound => {
                 if(!userFound) {
-                    next(ApiError.badRequest('Bad credentials'))
-                    return
+                    return next(ApiError.badRequest('Bad credentials'))
                 }
                 user = userFound
                 return bcrypt.compare(password, user.password)
             })
             .then(isEqual => {
                 if(!isEqual) {
-                    next(ApiError.badRequest('Bad credentials'))
-                    return
+                    return next(ApiError.badRequest('Bad credentials'))
                 }
                 const token = generateToken(user)
                 res.status(200).json(token) 

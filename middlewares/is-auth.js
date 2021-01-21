@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
 
     const userId = getUserId(authHeader)
     if(!userId) {
-        next(new ApiError(401, 'Not authenticated'))
+        return next(new ApiError(401, 'Not authenticated'))
     }
 
     req.userId = userId

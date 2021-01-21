@@ -6,10 +6,10 @@ const validateRegistration = (req, res, next) => {
     User.findOne( { $or:[{ name }, { email }] })
         .then( result => {
             if(result?.name === name) {
-                next(ApiError.badRequest( name + ' is already used'))
+                return next(ApiError.badRequest( name + ' is already used'))
             }
             if(result?.email === email) {
-                next(ApiError.badRequest( email + ' is already used'))
+                return next(ApiError.badRequest( email + ' is already used'))
             }
             next()
         })

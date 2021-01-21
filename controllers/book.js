@@ -32,8 +32,7 @@ class BookController {
         Book.findOne({ isbn })
             .then(book => {
                 if(!book) {
-                   next(ApiError.notFound('could not find isbn: ' + isbn))
-                   return
+                    return next(ApiError.notFound('could not find isbn: ' + isbn))
                 }
                 res.status(200).json(book)
             })
