@@ -1,4 +1,4 @@
 const multer = require('multer')
-const { storage, fileFilter } = require('../services/multer-config')
+const { storage, fileFilter } = require('../services/files')
 
-module.exports = multer({ storage, fileFilter }).single('image')
+module.exports = fileName => multer({ storage, fileFilter }).single(fileName)

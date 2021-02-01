@@ -9,6 +9,6 @@ const imageUpload = require('../middlewares/image-upload')
 const router = express.Router()
 
 router.post('/login', userController.login)
-router.post('/register', validateDto(registerDto), validateRegistration, imageUpload, userController.register)
+router.post('/register', imageUpload('avatar'), validateDto(registerDto), validateRegistration, userController.register)
 
 module.exports = router
